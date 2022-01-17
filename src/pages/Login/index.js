@@ -1,10 +1,10 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { ImageEmail, ImageLock, LogoWhite } from '../../assets';
-import { Button, Gap, Input } from '../../components';
+import { Button, Gap, Input, Link } from '../../components';
 import { colors, fonts, responsiveHeight, responsiveWidth } from '../../utils';
 
-const Login = () => {
+const Login = ({ navigation }) => {
     return (
         <View style={styles.page}>
             <View style={styles.wrapperHeader}>
@@ -31,7 +31,13 @@ const Login = () => {
             <Gap height={12} />
             <Button text="PROSES" />
             <Gap height={15} />
-            <Text style={styles.regis}>Belum Punya Akun?</Text>
+            <View style={styles.footer}>
+                <Text style={styles.regis}>Belum Punya Akun?</Text>
+                <Link
+                    text="Register"
+                    onPress={() => navigation.navigate('Register')}
+                />
+            </View>
         </View>
     )
 }
@@ -53,18 +59,22 @@ const styles = StyleSheet.create({
         height: responsiveHeight(90)
     },
     textLogo: {
-        fontSize: 24,
+        fontSize: 26,
         fontFamily: fonts.primary.bold,
         color: colors.white
     },
     forgotPass: {
         fontFamily: fonts.primary.semibold,
-        color: colors.white,
+        color: colors.grey,
         textAlign: 'right'
     },
     regis: {
         fontFamily: fonts.primary.semibold,
         color: colors.white,
-        textAlign: 'center'
+        marginRight: 8
+    },
+    footer: {
+        flexDirection: 'row',
+        justifyContent: 'center'
     }
 })
